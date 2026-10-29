@@ -470,7 +470,8 @@ def pagina_convenios():
         else:
             mostrar_df(tabela)
             exporta = vis.drop(columns=["QTD_ALERTAS"]).rename(columns=FLAGS)
-            exporta[list(FLAGS.values())] = exporta[list(FLAGS.values())].replace({True: "Sim", False: "Não"})
+            for col in FLAGS.values():
+                exporta[col] = exporta[col].astype(object).map({True: "Sim", False: "Não"})
             exporta.insert(len(exporta.columns), "Qtd. alertas", vis["QTD_ALERTAS"].values)
             download_sob_demanda("convenios", str((partes, busca)), exporta, "convenios_filtrados.csv")
 

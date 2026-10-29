@@ -534,7 +534,7 @@ Resultados por regra na tabela da seção 5.7. Por convênio formalizado (235.49
 * **Detalhe (painel à direita):** número, situação, alertas ativos (ou "Sem alertas"), valor global, soma dos contratos e soma paga.
 * **Alertas por convênio:** valor zero, assinatura fora da vigência, contratado acima do global, pago acima do desembolsado, prestação de contas vencida e muitos aditivos ou prorrogações (regras na seção 5.7).
 
-**Downloads:** o botão "Preparar CSV" gera o arquivo da seleção atual e o botão "Baixar CSV" o entrega (separador `;` e decimal `,`, pronto para o Excel). A lista de convênios inclui todos os convênios do filtro, não só os 500 exibidos. As listas de contratos não contêm nomes de fornecedores.
+**Como abrir os CSV baixados:** os arquivos usam ponto e vírgula (`;`) como separador de colunas e vírgula como separador decimal, o padrão do Excel em português. Para abrir corretamente, baixe o arquivo e dê dois cliques nele para abri-lo no Excel (ou no LibreOffice Calc). Evite abri-lo em editores de texto, como o VS Code: a vírgula decimal é lida como separador e os valores aparecem cortados. Se o Excel mostrar tudo em uma coluna só, use **Dados > De Texto/CSV** e escolha o delimitador ponto e vírgula. Nas colunas de alerta, os valores vêm como "Sim" e "Não".
 
 **Como ler:** um alerta é um ponto a conferir, não prova de irregularidade. Os valores vêm de arquivos diferentes (contratos, pagamentos e convênio), e divergências podem refletir diferenças de registro. A página Contratos usa a agregação por objeto: objetos com menos de 10 ocorrências ficam agrupados em "OUTROS", e contratos com data inválida ficam fora do recorte por período.
 
