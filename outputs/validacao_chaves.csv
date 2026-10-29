@@ -1,0 +1,5 @@
+﻿relacao;total;com_correspondencia;orfaos;pct_integrado
+contrato -> licitação (ID_LICITACAO);724823;724823;0;100.0
+licitação -> convênio (NR_CONVENIO);941844;941844;0;100.0
+pagamento -> convênio (NR_CONVENIO);7318534;7318534;0;100.0
+contrato -> convênio (NR_CONVENIO via licitação);724823;724823;0;100.0

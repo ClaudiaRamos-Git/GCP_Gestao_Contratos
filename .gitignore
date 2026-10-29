@@ -2,3 +2,10 @@ venv/
 __pycache__/
 .ipynb_checkpoints/
 /data/raw
+data/private/
+data/processed/fato_contrato.parquet
+data/processed/fato_pagamento.parquet
+data/processed/dim_fornecedor.parquet
+data/processed/agg_pagamento_fornecedor_pj.parquet
+.env
+.streamlit/secrets.toml

@@ -1,0 +1,10 @@
+﻿codigo;descricao;colunas;limiar;base;ocorrencias;pct
+RF01;Contrato com valor global zerado;VALOR_GLOBAL_CONTRATO;= 0;724823;282;0,04
+RF02;ID de contrato repetido;ID_CONTRATO;> 1 ocorrência;724823;2866;0,4
+RF03;Fim de vigência anterior ao início (contrato);DATA_INICIO/FIM_VIGENCIA_CONTRATO;fim < início;724823;0;0,0
+RF04;Assinatura do contrato fora da vigência do convênio;DATA_ASSINATURA_CONTRATO, DIA_INIC/FIM_VIGENC_CONV;assinatura < início ou > fim;724823;14319;1,98
+RF05;Contratação por inexigibilidade ou dispensa;MODALIDADE_LICITACAO, TP_PROCESSO_COMPRA;contém 'Inexigib' ou 'Dispens';724823;178844;24,67
+RF06;Contratado acima do valor global do convênio (tolerância 1%);soma VALOR_GLOBAL_CONTRATO, VL_GLOBAL_CONV;soma > 1,01 x global;235498;21558;9,15
+RF07;Pago acima do valor desembolsado (tolerância 1%);soma VL_PAGO, VL_DESEMBOLSADO_CONV;pago > 1,01 x desembolsado;235498;63664;27,03
+RF08;Prestação de contas com prazo vencido e convênio não encerrado;DIA_LIMITE_PREST_CONTAS, SIT_CONVENIO;prazo < 17/07/2026;235498;24594;10,44
+RF09;Muitos termos aditivos ou prorrogações (percentil 99);QTD_TA, QTD_PRORROGA;QTD_TA > 13 ou QTD_PRORROGA > 8;235498;2173;0,92
