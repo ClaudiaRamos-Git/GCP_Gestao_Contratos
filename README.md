@@ -144,7 +144,7 @@ Formato dos arquivos: CSV com separador `;`, codificação UTF-8 (o contrato tem
 
 * `NR_CONVENIO` é único (um convênio por linha).
 * Todas as colunas de data usam `DD/MM/AAAA`. Convertidas com `%d/%m/%Y`, nenhuma data foi perdida na conversão.
-* Os seis campos de valor aparecem como número inteiro ou com **vírgula** decimal; nenhum usa ponto decimal. O tratamento troca a vírgula por ponto e converte para número, sem perdas. Não há valores negativos em `VL_GLOBAL_CONV` nem em `VL_DESEMBOLSADO_CONV` (demais campos de valor a conferir).
+* Os seis campos de valor aparecem como número inteiro ou com vírgula decimal; nenhum usa ponto decimal. O tratamento troca a vírgula por ponto e converte para número, sem perdas. Valores negativos foram conferidos nos seis campos: não há em `VL_GLOBAL_CONV`, `VL_REPASSE_CONV`, `VL_DESEMBOLSADO_CONV` nem em `VALOR_GLOBAL_ORIGINAL_CONV`; há 2 em `VL_CONTRAPARTIDA_CONV` e 32 em `VL_EMPENHADO_CONV` (de 285.611 convênios). Foram mantidos como vieram da fonte.
 * **50.118 convênios (17,5%) não têm data de assinatura.** Entre os 32.076 que têm situação preenchida: 23.292 "Proposta/Plano de Trabalho Aprovado", 6.658 "Cancelado", 1.299 "Proposta/Plano de Trabalho Complementado Enviado para Análise", 824 "Proposta/Plano de Trabalho Complementado em Análise" e 3 "Convênio Anulado". Os 18.042 restantes (por diferença) não têm situação. Nenhum deles tem contrato ou pagamento ligado (63 licitações de 952.712 se ligam a eles).
 * **4 convênios têm início de vigência anterior a 2008** (um deles em 1900), todos sem data de assinatura e sem situação.
 * **71 convênios têm fim de vigência depois de 2030**, o que pode ser um prazo longo legítimo; mantidos e apenas registrados aqui.
@@ -234,7 +234,7 @@ O `transform.py` grava o resultado em `outputs/validacao_chaves.csv` (contrato �
 
 Ressalvas:
 * **Fornecedor de pessoa física:** o CPF mascarado traz poucos dígitos visíveis (ex.: `***12345***`), o que não permite ligar contrato e pagamento com segurança. Por isso, para pessoas físicas, o cruzamento ocorre **no nível do convênio** (`NR_CONVENIO`), e não por fornecedor.
-* **Fornecedor de pessoa jurídica:** a ligação por CNPJ entre contrato e pagamento depende de o formato coincidir nos dois arquivos. Será verificado antes de ser usado.
+* **Fornecedor de pessoa jurídica:** a ligação por CNPJ entre contrato e pagamento não foi usada nesta entrega. O cruzamento entre as tabelas é feito pelo número do convênio (`NR_CONVENIO`). A ligação por CNPJ fica como melhoria futura.
 
 ### 5.5. Anonimização e proteção de dados pessoais
 
@@ -250,7 +250,7 @@ O edital do projeto proíbe publicar dados que identifiquem pessoas. As tabelas 
 * O painel e os arquivos de `outputs/` **não** trazem ranking nominal de fornecedores: a concentração é apresentada só por medidas agregadas (participação dos maiores e HHI). Os arquivos de download não contêm nomes.
 * Não serão exibidos rankings nem recortes que permitam identificar indivíduos; análises por fornecedor se restringem a pessoas jurídicas e são apresentadas de forma agregada, sem sugerir irregularidade.
 
-**Conformidade legal e ética.** Os dados são públicos e publicados pelo Governo Federal (seção 4). Nome e CPF de pessoas físicas são dados pessoais nos termos da LGPD (Lei nº 13.709/2018) e, por isso, não são exibidos nem versionados após o tratamento. Os campos utilizados não incluem dados pessoais sensíveis no sentido da LGPD (como saúde, origem racial ou convicção religiosa). Dados de pessoas jurídicas (CNPJ e razão social) já são divulgados na fonte oficial e aparecem apenas de forma agregada e contextualizada. Para reduzir o risco de reidentificação, o painel não exibirá recortes com poucas observações (limiar a definir na etapa de EDA), e os alertas de risco (seção 5.7) serão apresentados por convênio ou contrato, com aviso de que indicam pontos a conferir e não irregularidade. O repositório não contém credenciais, tokens nem documentos confidenciais.
+**Conformidade legal e ética.** Os dados são públicos e publicados pelo Governo Federal (seção 4). Nome e CPF de pessoas físicas são dados pessoais nos termos da LGPD (Lei nº 13.709/2018) e, por isso, não são exibidos nem versionados após o tratamento. Os campos utilizados não incluem dados pessoais sensíveis no sentido da LGPD (como saúde, origem racial ou convicção religiosa). Pessoas físicas são anonimizadas. Dados de pessoas jurídicas (CNPJ e razão social) são divulgados na fonte oficial, mas não são versionados nem exibidos neste projeto, e as tabelas publicadas não trazem nome nem CNPJ de fornecedores. Para reduzir o risco de reidentificação, o texto livre do objeto do contrato só aparece agrupado: objetos com menos de 10 ocorrências no total viram "OUTROS (objetos pouco frequentes)" (seção 5.5).
 
 **Exclusão preventiva por independência profissional.** Por precaução, foram retirados da base os convênios ligados a um conjunto restrito de entidades com as quais a autora teve relação profissional anterior (132 de 285.743 convênios, cerca de 0,05%). A lista não é publicada e fica fora do repositório. A exclusão cobre os convênios em que essas entidades aparecem como proponente, fornecedor ou favorecido, e vale para todas as tabelas. Não envolve nenhum juízo sobre as entidades, e a análise não usa documentos ou dados obtidos nessa atuação: toda a base é pública. O filtro está no código (`src/utils.py`, chamado por `src/transform.py`), com verificação automática.
 
@@ -260,7 +260,7 @@ O edital do projeto proíbe publicar dados que identifiquem pessoas. As tabelas 
 |---|---|---|
 | Ler os CSV com `sep=";"` e `encoding="utf-8-sig"` | Arquivos usam ponto e vírgula; o contrato tem BOM | ✅ Definido |
 | Anonimizar pessoas físicas e criar `TIPO_FORNECEDOR` | Edital proíbe identificadores de pessoas (seção 5.5) | ✅ Definido |
-| Excluir convênios ligados a entidades com relação profissional anterior da autora | Independência da análise e confidencialidade profissional (seção 5.5). 132 convênios removidos, com verificação automática (uma segunda passada remove 0) | ✅ Implementado |
+| Excluir convênios ligados a entidades com relação profissional anterior da autora | Independência da análise e confidencialidade profissional (seção 5.5). 132 convênios removidos; a cada execução, o código confere que nenhum convênio da lista restou. | ✅ Implementado |
 | Não versionar o CSV bruto | Contrato tem 214 MB (limite de 100 MB por arquivo no GitHub) e há nomes de pessoas físicas | ✅ Definido |
 | Modelar em esquema estrela, um parquet por tabela | Seção 5.2; modelo efetivamente implementado na seção 5.3 | ✅ Implementado |
 | Padronizar separador decimal e tipos numéricos | Valores com vírgula decimal convertidos para número, sem perdas | ✅ Implementado |
@@ -364,6 +364,15 @@ Duplicidade: 2.866 linhas de contrato compartilham 1.245 `ID_CONTRATO` (decisão
 * Outliers (IQR sobre log10 dos valores maiores que zero): limite de R$ 24.321.228,47, com 546 contratos acima (0,08%).
 * Contratos com valor zero: 282 (0,04%).
 
+**Como ler estas medidas:**
+* **Média:** soma de todos os valores dividida pela quantidade de contratos. É sensível a valores muito altos.
+* **Mediana:** o valor do meio quando os contratos são ordenados do menor ao maior. Metade dos contratos vale menos que ela e metade vale mais. Por isso representa melhor o contrato típico quando há valores extremos.
+* **Desvio-padrão:** quanto os valores costumam se afastar da média. Quanto maior, mais espalhados.
+* **Assimetria:** indica para qual lado a distribuição pende. Perto de 0 é equilibrada; um valor positivo alto, como aqui, mostra uma cauda longa de poucos valores muito altos.
+* **Percentil:** o valor abaixo do qual fica uma certa parcela dos contratos. Por exemplo, o p90 é o valor que 90% dos contratos não superam. O p50 é a mediana, e os quartis são os percentis 25, 50 e 75.
+* **Outliers e IQR:** o intervalo interquartil (IQR) é a distância entre o 1º e o 3º quartil. Valores muito fora dessa faixa são tratados como atípicos (outliers). Aqui o critério é aplicado ao logaritmo do valor, que reduz o peso dos valores gigantes.
+* **Correlação:** mede se duas variáveis variam juntas, em uma escala de -1 a 1. Perto de 0 significa pouca relação; correlação não prova que uma causa a outra.
+
 ### 7.4. Tendência no tempo
 Contratos assinados por ano (datas plausíveis; 2026 é parcial, até 17/07):
 
@@ -426,6 +435,17 @@ Pagamento individual: mediana de R$ 1.434,08; p90 de R$ 22.500,00; p99 de R$ 325
 | Convite | 9.962 | 1,37% | 0,79 | 0,39% | 53.293,82 |
 | RDC | 250 | 0,03% | 2,07 | 1,02% | 926.954,64 |
 | Diálogo competitivo | 2 | 0,00% | 0,00 | 0,00% | 71.022,94 |
+
+**O que significam as modalidades:** a modalidade é a forma legal pela qual o órgão escolhe quem vai fornecer o bem ou o serviço.
+* **Pregão:** disputa por menor preço para bens e serviços de uso comum.
+* **Concorrência:** usada em contratações de maior valor ou complexidade, com ampla participação.
+* **Tomada de Preços:** destinada a fornecedores previamente cadastrados, em valores intermediários.
+* **RDC (Regime Diferenciado de Contratações Públicas):** regime próprio de licitação criado pela Lei nº 12.462/2011, inicialmente para obras da Copa e das Olimpíadas e depois ampliado a outras áreas. É raro nesta base.
+* **Dispensa de licitação e inexigibilidade:** contratação direta, sem disputa. A dispensa vale para os casos que a lei permite; a inexigibilidade, quando a competição é inviável (por exemplo, fornecedor exclusivo).
+* **Convite:** modalidade para contratações de menor valor, em que o órgão convida um número mínimo de fornecedores.
+* **Concurso:** escolha de trabalho técnico, científico ou artístico, normalmente com prêmio ou remuneração ao vencedor.
+* **Diálogo competitivo:** usado em contratações complexas ou inovadoras, em que o órgão conversa com os licitantes antes da proposta final.
+* **Não informado:** a modalidade não foi registrada. Em sua maior parte significa "não se aplica", porque o processo não é uma licitação (seção 7.5).
 
 **Sobre "Não informado" na modalidade (60,87% dos contratos e 20,46% do valor):** a modalidade só existe para processos do tipo licitação. O cruzamento com o tipo de processo de compra (`outputs/modalidade_x_processo.csv` e aba *Modalidade x processo* do painel) mostra que a ausência vem, quase toda, de processos que **não são licitação**:
 
@@ -663,7 +683,7 @@ O que **é** versionado e permite rodar o painel sem os dados brutos: as tabelas
 ### Versionamento (Git)
 * Repositório pessoal dedicado exclusivamente ao projeto. Desenvolvido em modo privado e **tornado público antes da submissão dos links** (todos os dados são públicos; histórico conferido: sem a lista de exclusão, sem nomes e sem CNPJs).
 * Commits pequenos, com mensagens objetivas no imperativo.
-* Estratégia de branches: `A_DEFINIR_E_DESCREVER_AQUI`.
+* Estratégia de branches: o desenvolvimento foi feito diretamente na branch `main`, por ser um projeto individual e de prazo curto. Como melhoria futura, adotar `main` estável, `develop` para integração e branches por funcionalidade.
 
 ---
 
@@ -697,7 +717,7 @@ O que **é** versionado e permite rodar o painel sem os dados brutos: as tabelas
 * **Bibliotecas:** Python, Pandas, PyArrow, Plotly e Streamlit (documentações na seção 6).
 * **Curso e orientação:** SENAI/SC · LAB365.
 * **Identidade visual:** o painel segue um estilo de ferramentas de gestão de projetos (tema escuro, painéis laterais e etiquetas coloridas), usado apenas como referência estética.
-* `A_PREENCHER:` demais materiais consultados e adaptações de exemplos externos.
+* **Materiais consultados:** Orientações didáticas sobre o Streamlit, Pandas e Plotly; dicionário de dados e página de download do Transferegov/SICONV; ferramentas de IA generativa como apoio à escrita do código e do README, com revisão e validação da autora. Sites de plataformas de Gestão e gerenciamento como Asana.com e Monday.com.
 
 ---
 
