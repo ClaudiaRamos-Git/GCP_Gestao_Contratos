@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | 🌐 **App publicado** | https://gcp-gestao-contratos-publicos.streamlit.app (acesso público, sem login) |
-| 🎥 **Vídeo (até 3 min)** | `COLAR_AQUI_O_LINK_DO_VIDEO` |
+| 🎥 **Vídeo (até 3 min)** | https://drive.google.com/file/d/1QyfRB9ywVfY7HOyqay4vpXDPS4bvD_cS/view?usp=sharing |
 | 👩‍💻 **Autora** | Claudia Ramos · [LinkedIn](https://www.linkedin.com/in/cl%C3%A1udia-maria-duarte-ramos-17b1151a2/) · [GitHub](https://github.com/ClaudiaRamos-Git) |
 | 🎓 **Instituição / Programa** | SENAI/SC · LAB365 — Visualização de Dados e BI — Projeto Final |
 
@@ -730,7 +730,7 @@ O que **é** versionado e permite rodar o painel sem os dados brutos: as tabelas
 | Repositório pessoal (público) | https://github.com/ClaudiaRamos-Git/GCP_Gestao_Contratos |
 | Aplicação publicada (Streamlit) | https://gcp-gestao-contratos-publicos.streamlit.app |
 | Repositório oficial da turma | `COLAR_AQUI` |
-| Vídeo (Google Drive, leitor para quem tem o link) | `COLAR_AQUI` |
+| Vídeo (Google Drive, leitor para quem tem o link) | https://drive.google.com/file/d/1QyfRB9ywVfY7HOyqay4vpXDPS4bvD_cS/view?usp=sharing |
 | Publicação no LinkedIn | `COLAR_AQUI` |
 | **Prazo de entrega no AVA** | 30/10/2026, às 22h |
 
