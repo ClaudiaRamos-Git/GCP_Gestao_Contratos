@@ -4,9 +4,9 @@
 
 | | |
 |---|---|
-| 🌐 **App publicado** | `COLAR_AQUI_O_LINK_DO_STREAMLIT` (acesso público, sem login) |
+| 🌐 **App publicado** | https://gcp-gestao-contratos-publicos.streamlit.app (acesso público, sem login) |
 | 🎥 **Vídeo (até 3 min)** | `COLAR_AQUI_O_LINK_DO_VIDEO` |
-| 👩‍💻 **Autora** | Claudia Ramos · [LinkedIn](COLAR_LINK) · [GitHub](https://github.com/ClaudiaRamos-Git) |
+| 👩‍💻 **Autora** | Claudia Ramos · [LinkedIn](https://www.linkedin.com/in/cl%C3%A1udia-maria-duarte-ramos-17b1151a2/) · [GitHub](https://github.com/ClaudiaRamos-Git) |
 | 🎓 **Instituição / Programa** | SENAI/SC · LAB365 — Visualização de Dados e BI — Projeto Final |
 
 ---
@@ -534,7 +534,9 @@ Resultados por regra na tabela da seção 5.7. Por convênio formalizado (235.49
 
 ## 10. Aplicação Streamlit
 
-* **Link do deploy:** `COLAR_AQUI_O_LINK_DO_STREAMLIT`
+* **Link do deploy:** https://gcp-gestao-contratos-publicos.streamlit.app 
+* **Como acessar:** abra o link acima em qualquer navegador (acesso público, sem login). Se o app estiver em repouso por falta de acessos, aparece um botão para reativá-lo, e ele volta em alguns instantes. Para rodar no seu computador, veja o Passo 6 da instalação.
+* **Como foi publicado:** Streamlit Community Cloud, a partir da branch `main` deste repositório, arquivo principal `app.py`, Python 3.11 e dependências do `requirements.txt`.
 * **Fonte de dados do painel:** `data/processed/red_flags_convenio.parquet`, `data/processed/contratos_red_flags.parquet`, `data/processed/agg_contrato_objeto.parquet` e os CSV de `outputs/`, gerados por `src/transform.py` e `src/analysis.py`. O painel não lê os dados brutos nem os pagamentos individuais.
 * **Identidade visual:** tema escuro, com painel lateral à esquerda, etiquetas coloridas e listas, definido em `app.py` e em `.streamlit/config.toml`.
 * **Boas práticas de leitura:** todos os gráficos têm título, eixos com unidade, legenda e fonte; o painel mostra os **filtros ativos** e o **recorte exibido**; 2026 aparece como ano parcial; e há mensagens quando um filtro não retorna dados.
@@ -697,7 +699,7 @@ O que **é** versionado e permite rodar o painel sem os dados brutos: as tabelas
 * RF07 (pago acima do desembolsado) e RF08 (prestação vencida) dependem do significado dos campos de valor e de situação; devem ser validados com o dicionário oficial. Em RF08, "Convênio Rescindido" e "Prestação de Contas Rejeitada" contam como não encerrados.
 * Campos com muitos ausentes (modalidade de licitação, valor desembolsado, data de publicação) limitam as regras que os usam. A modalidade "Não informado" (60,87% dos contratos) é, em 94,0% dos casos, "não se aplica" (processo que não é licitação); a falta real de preenchimento é de 3,6% dos contratos (seção 7.5).
 * 2026 é ano parcial (dados até 17/07/2026); comparações com anos completos não são válidas.
-* O painel exibe no máximo 500 convênios por vez na tela (o download traz todos os do filtro). Os filtros valem para a página em que estão: por exemplo, o filtro de período da página Contratos não altera os indicadores da página Convênios.
+* O painel exibe no máximo 500 convênios por vez na tela (o download traz todos os do filtro). Os filtros valem para a  página em que estão: por exemplo, o filtro de período da página Contratos não altera os indicadores da página Convênios. A página Red flags não tem filtro de período e considera toda a base.
 * O filtro por tipo de aquisição existe só na página Contratos, porque o convênio não tem esse campo.
 * As datas impossíveis (398 contratos e 34 pagamentos) foram tratadas como inválidas apenas nas análises por ano e período, e permanecem nos totais gerais.
 
@@ -726,7 +728,7 @@ O que **é** versionado e permite rodar o painel sem os dados brutos: as tabelas
 | Item | Link |
 |---|---|
 | Repositório pessoal (público) | https://github.com/ClaudiaRamos-Git/GCP_Gestao_Contratos |
-| Aplicação publicada (Streamlit) | `COLAR_AQUI` |
+| Aplicação publicada (Streamlit) | https://gcp-gestao-contratos-publicos.streamlit.app |
 | Repositório oficial da turma | `COLAR_AQUI` |
 | Vídeo (Google Drive, leitor para quem tem o link) | `COLAR_AQUI` |
 | Publicação no LinkedIn | `COLAR_AQUI` |
@@ -747,14 +749,14 @@ A publicação do vídeo marca obrigatoriamente o professor, o LAB365, o SENAI S
 | Decisão sobre anonimização e esquema estrela | ✅ Feito |
 | Filtro de exclusão preventiva e verificação automática | ✅ Feito |
 | Tratamento do convênio, `FORMALIZADO` e regra de vigência | ✅ Feito |
-| Tratamento de licitação, contrato e pagamento (`transform.py`) e validação das chaves | ✅ Feito (resultado da validação a registrar na seção 5.4) |
+| Tratamento de licitação, contrato e pagamento (`transform.py`) e validação das chaves | ✅ Feito |
 | Tabelas em parquet (esquema estrela e agregação de pagamentos) | ✅ Feito |
 | EDA, estatísticas e red flags (`analysis.py`) | ✅ Feito |
-| Definição dos red flags (regras e limiares) | ✅ Feito (RF07 e RF08 a validar com o dicionário oficial) |
+| Definição dos red flags (regras e limiares) | ✅ Regras definidas e implementadas · ⏳ Validação de RF07 e RF08 com o dicionário oficial pendente |
 | README: resultados, discussão, aplicação profissional, limitações | ✅ Feito (esta versão) |
-| App Streamlit com 5 páginas, painéis laterais, filtros, downloads e avisos | ✅ Feito (visual aprovado; falta testar no deploy) |
-| Repositório público (histórico já conferido) | ⏳ A fazer, antes da submissão |
-| Deploy no Streamlit Community Cloud | ⏳ A fazer |
+| App Streamlit com 5 páginas, painéis laterais, filtros, downloads e avisos | ✅ Feito e testado no deploy |
+| Repositório público (histórico já conferido) | ✅ Feito (público desde 29/10/2026, após conferência do histórico) |
+| Deploy no Streamlit Community Cloud | ✅ Feito |
 | Fork/publicação no repositório da turma | ⏳ A fazer |
 | Vídeo (até 3 min) e publicação no LinkedIn | ⏳ A fazer |
 | Submissão dos links no AVA (até 30/10/2026, 22h) | ⏳ A fazer |
