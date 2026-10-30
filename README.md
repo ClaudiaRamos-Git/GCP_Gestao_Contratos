@@ -729,7 +729,7 @@ O que **é** versionado e permite rodar o painel sem os dados brutos: as tabelas
 |---|---|
 | Repositório pessoal (público) | https://github.com/ClaudiaRamos-Git/GCP_Gestao_Contratos |
 | Aplicação publicada (Streamlit) | https://gcp-gestao-contratos-publicos.streamlit.app |
-| Repositório oficial da turma | `COLAR_AQUI` |
+| Repositório oficial da turma | https://github.com/Visualizacao-Dados-BI-T1/Projeto_ZP/pull/33 |
 | Vídeo (Google Drive, leitor para quem tem o link) | https://drive.google.com/file/d/1QyfRB9ywVfY7HOyqay4vpXDPS4bvD_cS/view?usp=sharing |
 | Publicação no LinkedIn | https://www.linkedin.com/feed/update/urn:li:activity:7522044660337340416/ |
 | **Prazo de entrega no AVA** | 30/10/2026, às 22h |
