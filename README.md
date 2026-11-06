@@ -757,6 +757,6 @@ A publicação do vídeo marca obrigatoriamente o professor, o LAB365, o SENAI S
 | App Streamlit com 5 páginas, painéis laterais, filtros, downloads e avisos | ✅ Feito e testado no deploy |
 | Repositório público (histórico já conferido) | ✅ Feito (público desde 29/10/2026, após conferência do histórico) |
 | Deploy no Streamlit Community Cloud | ✅ Feito |
-| Fork/publicação no repositório da turma | ⏳ A fazer |
-| Vídeo (até 3 min) e publicação no LinkedIn | ⏳ A fazer |
-| Submissão dos links no AVA (até 30/10/2026, 22h) | ⏳ A fazer |
+| Fork/publicação no repositório da turma | ✅ Feito |
+| Vídeo (até 3 min) e publicação no LinkedIn | ✅ Feito |
+| Submissão dos links no AVA (até 30/10/2026, 22h) | ✅ Feito |
